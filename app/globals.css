@@ -281,6 +281,7 @@ h4:hover .heading-anchor-link {
   overflow-x: auto;
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
+  color: var(--code-text) !important;
 }
 
 /* Inline code in prose - force our colors */
@@ -381,6 +382,10 @@ h4:hover .heading-anchor-link {
     background: var(--code-bg);
     border: 1px solid var(--code-border);
     border-radius: var(--radius-lg);
+  }
+  
+  & pre code {
+    color: var(--code-text) !important;
   }
   
   /* Tables */
