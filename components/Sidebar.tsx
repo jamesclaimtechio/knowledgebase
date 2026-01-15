@@ -30,7 +30,7 @@ export function Sidebar({ groups, onNavigate }: SidebarProps) {
     <nav className="w-[var(--sidebar-width)] shrink-0 border-r border-[var(--color-border)] bg-[var(--color-bg-subtle)]/50 overflow-y-auto h-full">
       <div className="sticky top-0 bg-[var(--color-bg-subtle)]/95 backdrop-blur-sm border-b border-[var(--color-border)] px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2" onClick={onNavigate}>
+          <Link href="/" className="flex items-center" onClick={onNavigate}>
             <img 
               src={siteConfig.logo.light}
               alt={siteConfig.logo.alt}
@@ -41,9 +41,6 @@ export function Sidebar({ groups, onNavigate }: SidebarProps) {
               alt={siteConfig.logo.alt}
               className="h-10 w-auto hidden dark:block"
             />
-            <span className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">
-              {siteConfig.navigation.sidebarLabel}
-            </span>
           </Link>
           <ThemeToggle />
         </div>

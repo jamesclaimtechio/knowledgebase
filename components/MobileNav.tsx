@@ -36,7 +36,7 @@ export function MobileNav({ groups }: MobileNavProps) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <div className="ml-3 flex items-center gap-2">
+        <div className="ml-3 flex items-center">
           <img 
             src={siteConfig.logo.light}
             alt={siteConfig.logo.alt}
@@ -47,9 +47,6 @@ export function MobileNav({ groups }: MobileNavProps) {
             alt={siteConfig.logo.alt}
             className="h-8 w-auto hidden dark:block"
           />
-          <span className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">
-            {siteConfig.navigation.sidebarLabel}
-          </span>
         </div>
       </div>
 
