@@ -283,9 +283,19 @@ h4:hover .heading-anchor-link {
   line-height: var(--leading-relaxed);
 }
 
+/* Inline code in prose - force our colors */
+.prose code:not(pre code) {
+  background: var(--code-bg) !important;
+  color: var(--code-text) !important;
+  padding: 0.125rem 0.375rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
 .prose :where(code):not(:where([class~="not-prose"] *))::before,
 .prose :where(code):not(:where([class~="not-prose"] *))::after {
-  content: none;
+  content: none !important;
 }
 
 /* Table styles */
@@ -351,19 +361,19 @@ h4:hover .heading-anchor-link {
     text-decoration: underline;
   }
   
-  /* Inline code */
-  & :where(code):not(pre code) {
-    background: var(--code-bg);
-    color: var(--code-text);
+  /* Inline code - use higher specificity to override prose defaults */
+  & code:not(pre code) {
+    background: var(--code-bg) !important;
+    color: var(--code-text) !important;
     padding: var(--space-1) 0.375rem;
     border-radius: var(--radius-sm);
     font-size: var(--text-sm);
     font-weight: 500;
   }
   
-  & :where(code):not(pre code)::before,
-  & :where(code):not(pre code)::after {
-    content: none;
+  & code:not(pre code)::before,
+  & code:not(pre code)::after {
+    content: none !important;
   }
   
   /* Code blocks */
