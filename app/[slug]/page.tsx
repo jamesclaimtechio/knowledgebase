@@ -8,6 +8,7 @@ import {
 import { markdownToHtml } from '@/lib/markdown';
 import { DocContent } from '@/components/DocContent';
 import { TableOfContents } from '@/components/TableOfContents';
+import { SearchTrigger } from '@/components/SearchDialog';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -54,8 +55,12 @@ export default async function DocPage({ params }: PageProps) {
         prev={prev}
         next={next}
       />
-      <div className="hidden xl:block pr-8 pt-12">
-        <TableOfContents headings={doc.headings} />
+      {/* Right sidebar - sticky with search + TOC */}
+      <div className="hidden xl:block w-[var(--toc-width)] shrink-0 pr-8 pt-6">
+        <div className="sticky top-6">
+          <SearchTrigger />
+          <TableOfContents headings={doc.headings} />
+        </div>
       </div>
     </div>
   );

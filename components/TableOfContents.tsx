@@ -42,8 +42,8 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   }
 
   return (
-    <nav className="w-[var(--toc-width)] shrink-0 hidden xl:block">
-      <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto">
+    <nav className="mt-6">
+      <div className="max-h-[calc(100vh-12rem)] overflow-y-auto">
         <h4 className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-3">
           On this page
         </h4>
@@ -72,3 +72,5 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
     </nav>
   );
 }
+
+export default TableOfContents;

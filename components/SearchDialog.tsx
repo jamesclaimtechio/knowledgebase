@@ -16,6 +16,33 @@ interface SearchDialogProps {
   items: SearchItem[];
 }
 
+// Custom event name for opening search
+const OPEN_SEARCH_EVENT = 'open-search-dialog';
+
+// Inline search trigger for the right sidebar (xl+ screens)
+export function SearchTrigger() {
+  const handleClick = () => {
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent(OPEN_SEARCH_EVENT));
+    }
+  };
+  
+  return (
+    <button
+      onClick={handleClick}
+      className="w-full flex items-center gap-2 px-3 py-2 text-sm text-[var(--color-text-muted)] bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-lg)] shadow-[var(--shadow-sm)] hover:border-[var(--color-border-muted)] hover:text-[var(--color-text-secondary)] transition-colors"
+    >
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <span>Search...</span>
+      <kbd className="ml-auto flex items-center gap-0.5 px-1.5 py-0.5 text-xs font-medium bg-[var(--color-bg-subtle)] rounded-[var(--radius-sm)]">
+        <span className="text-[var(--color-text-subtle)]">⌘</span>K
+      </kbd>
+    </button>
+  );
+}
+
 export function SearchDialog({ items }: SearchDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
@@ -90,27 +117,37 @@ export function SearchDialog({ items }: SearchDialogProps) {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
+  // Listen for custom event from SearchTrigger
+  useEffect(() => {
+    const handleOpenSearch = () => setIsOpen(true);
+    window.addEventListener(OPEN_SEARCH_EVENT, handleOpenSearch);
+    return () => window.removeEventListener(OPEN_SEARCH_EVENT, handleOpenSearch);
+  }, []);
+
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
     }
   }, [isOpen]);
 
+  // Fixed button for mobile/tablet (hidden on xl+ where inline trigger is used)
+  const fixedButton = !isOpen ? (
+    <button
+      onClick={() => setIsOpen(true)}
+      className="xl:hidden fixed top-4 right-4 lg:top-6 lg:right-6 z-[var(--z-fixed)] flex items-center gap-2 px-3 py-2 text-sm text-[var(--color-text-muted)] bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-lg)] shadow-[var(--shadow-sm)] hover:border-[var(--color-border-muted)] hover:text-[var(--color-text-secondary)] transition-colors"
+    >
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <span className="hidden sm:inline">Search...</span>
+      <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-xs font-medium bg-[var(--color-bg-subtle)] rounded-[var(--radius-sm)]">
+        <span className="text-[var(--color-text-subtle)]">⌘</span>K
+      </kbd>
+    </button>
+  ) : null;
+
   if (!isOpen) {
-    return (
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed top-4 right-4 lg:top-6 lg:right-6 z-[var(--z-fixed)] flex items-center gap-2 px-3 py-2 text-sm text-[var(--color-text-muted)] bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-lg)] shadow-[var(--shadow-sm)] hover:border-[var(--color-border-muted)] hover:text-[var(--color-text-secondary)] transition-colors"
-      >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-        <span className="hidden sm:inline">Search...</span>
-        <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-xs font-medium bg-[var(--color-bg-subtle)] rounded-[var(--radius-sm)]">
-          <span className="text-[var(--color-text-subtle)]">⌘</span>K
-        </kbd>
-      </button>
-    );
+    return fixedButton;
   }
 
   return (
