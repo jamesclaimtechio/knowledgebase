@@ -13,9 +13,9 @@ export const siteConfig = {
 
   // Logo configuration
   logo: {
-    src: "/logo.svg",
+    light: "/Template Logo black text.png",  // Used in light mode
+    dark: "/Template Logo white text.png",   // Used in dark mode
     alt: "Logo",
-    invertOnDark: false,
   },
 
   // Theme configuration

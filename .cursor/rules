@@ -9,14 +9,14 @@ Next.js 15+ documentation site with markdown content, dark mode, and centralized
 - config/site.ts - Site identity, navigation, sidebar categories
 - content/ - Markdown docs (XX-slug.md naming, frontmatter required)
 - lib/ - Utilities (docs.ts, markdown.ts, search.ts)
-- public/ - Static assets (logo, icons)
+- public/ - Static assets (logos, icons)
 
 ## Quick Customization
 
 ### Site Identity (config/site.ts)
 - name, title, description, keywords - SEO and branding
-- logo.src - Path to logo in /public
-- logo.invertOnDark - True for dark logos
+- logo.light - Logo for light mode (e.g., dark text logo)
+- logo.dark - Logo for dark mode (e.g., light text logo)
 - navigation.homeSlug - Default landing page
 - sidebar.categories - Doc groupings by order ranges
 
@@ -49,6 +49,8 @@ Use CSS variables: className="bg-[var(--color-bg-subtle)] text-[var(--color-text
 ## Dark Mode
 
 Uses .dark class on html. All tokens have dark overrides. Never hardcode colors.
+
+Logo switching: Use separate logo.light and logo.dark files. Components show/hide via dark:hidden and hidden dark:block classes.
 
 ## Code Blocks
 

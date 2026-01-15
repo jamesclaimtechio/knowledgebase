@@ -32,9 +32,14 @@ export function Sidebar({ groups, onNavigate }: SidebarProps) {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2" onClick={onNavigate}>
             <img 
-              src={siteConfig.logo.src}
+              src={siteConfig.logo.light}
               alt={siteConfig.logo.alt}
-              className={`h-10 w-auto ${siteConfig.logo.invertOnDark ? 'dark:invert' : ''}`}
+              className="h-10 w-auto dark:hidden"
+            />
+            <img 
+              src={siteConfig.logo.dark}
+              alt={siteConfig.logo.alt}
+              className="h-10 w-auto hidden dark:block"
             />
             <span className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">
               {siteConfig.navigation.sidebarLabel}

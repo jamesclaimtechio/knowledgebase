@@ -38,9 +38,14 @@ export function MobileNav({ groups }: MobileNavProps) {
         </button>
         <div className="ml-3 flex items-center gap-2">
           <img 
-            src={siteConfig.logo.src}
+            src={siteConfig.logo.light}
             alt={siteConfig.logo.alt}
-            className={`h-8 w-auto ${siteConfig.logo.invertOnDark ? 'dark:invert' : ''}`}
+            className="h-8 w-auto dark:hidden"
+          />
+          <img 
+            src={siteConfig.logo.dark}
+            alt={siteConfig.logo.alt}
+            className="h-8 w-auto hidden dark:block"
           />
           <span className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">
             {siteConfig.navigation.sidebarLabel}
