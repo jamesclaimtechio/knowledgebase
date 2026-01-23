@@ -1,9 +1,26 @@
+/**
+ * 🌓 ThemeToggle Component
+ * 
+ * Toggle button for switching between light and dark mode.
+ * Uses next-themes for theme management and persists choice to localStorage.
+ * 
+ * Features:
+ * - Sun icon for light mode, moon icon for dark mode
+ * - Smooth icon transitions
+ * - Proper hydration handling to avoid flash
+ * - Accessible with aria-label
+ * 
+ * @example
+ * // Just render it - no props needed
+ * <ThemeToggle />
+ */
+
 'use client';
 
 import { useTheme } from 'next-themes';
 import { useSyncExternalStore } from 'react';
 
-// Simple subscription for hydration state
+// Hydration helpers to prevent server/client mismatch
 const emptySubscribe = () => () => {};
 const getSnapshot = () => true;
 const getServerSnapshot = () => false;

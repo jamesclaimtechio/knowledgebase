@@ -1,8 +1,28 @@
+/**
+ * 📄 DOCUMENTATION UTILITIES
+ * 
+ * This module handles reading, parsing, and organizing markdown documentation.
+ * It reads files from the /content folder and extracts frontmatter metadata.
+ * 
+ * Key functions:
+ * - getAllDocsMeta() - Get all doc metadata for sidebar navigation
+ * - getDocBySlug(slug) - Get a single document by its URL slug
+ * - getDocsGrouped() - Get docs organized by category
+ * - extractHeadings(content) - Extract H2/H3 headings for table of contents
+ * 
+ * Frontmatter fields required in each .md file:
+ * - title: Page title (shown in sidebar and browser tab)
+ * - description: SEO description
+ * - slug: URL path for the page
+ * - order: Numeric value for sorting and category assignment
+ */
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { siteConfig } from '@/config/site';
 
+/** Path to the content directory containing markdown files */
 const contentDirectory = path.join(process.cwd(), 'content');
 
 export interface DocMeta {

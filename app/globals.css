@@ -5,8 +5,50 @@
 @variant dark (&:where(.dark, .dark *));
 
 /* =============================================================================
-   DESIGN TOKENS
-   Edit this section to customize the entire look of the docs site.
+   🎨 DESIGN TOKENS - CUSTOMIZE YOUR SITE HERE
+   
+   This file controls all visual styling. Edit the CSS variables below to 
+   customize colors, typography, and spacing for your documentation site.
+   
+   ⚠️ IMPORTANT: 
+   - Always update BOTH :root (light) and .dark (dark mode) sections
+   - Use CSS variables in components: bg-[var(--color-bg-subtle)]
+   - Never hardcode colors in components
+   
+   ============================================================================= 
+   
+   📦 PRESET COLOR SCHEMES (copy these to quickly change your theme)
+   
+   🔵 BLUE THEME:
+   --color-primary: #3b82f6;
+   --color-primary-hover: #2563eb;
+   --color-link: #3b82f6;
+   --color-link-hover: #2563eb;
+   
+   🟢 GREEN THEME:
+   --color-primary: #22c55e;
+   --color-primary-hover: #16a34a;
+   --color-link: #22c55e;
+   --color-link-hover: #16a34a;
+   
+   🟣 PURPLE THEME:
+   --color-primary: #8b5cf6;
+   --color-primary-hover: #7c3aed;
+   --color-link: #8b5cf6;
+   --color-link-hover: #7c3aed;
+   
+   🟠 ORANGE THEME:
+   --color-primary: #f97316;
+   --color-primary-hover: #ea580c;
+   --color-link: #f97316;
+   --color-link-hover: #ea580c;
+   
+   ⬛ NEUTRAL (Default - Professional grayscale):
+   --color-primary: #18181b;
+   --color-primary-hover: #27272a;
+   --color-link: #18181b;
+   --color-link-hover: #3f3f46;
+   
    ============================================================================= */
 
 :root {

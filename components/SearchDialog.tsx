@@ -1,9 +1,29 @@
+/**
+ * 🔍 SearchDialog Component
+ * 
+ * Provides full-text search across all documentation pages.
+ * Uses Fuse.js for fuzzy matching and keyboard navigation.
+ * 
+ * Features:
+ * - Opens with Cmd+K (Mac) or Ctrl+K (Windows)
+ * - Fuzzy search across title, description, headings, and content
+ * - Keyboard navigation (arrows, enter, escape)
+ * - Mobile-friendly floating button + modal
+ * 
+ * Also exports SearchTrigger for inline search buttons.
+ * 
+ * @example
+ * // In a layout or page
+ * <SearchDialog items={searchableItems} />
+ */
+
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Fuse from 'fuse.js';
 
+/** Structure for searchable documentation items */
 interface SearchItem {
   title: string;
   slug: string;
@@ -12,7 +32,9 @@ interface SearchItem {
   headings: string[];
 }
 
+/** Props for the SearchDialog component */
 interface SearchDialogProps {
+  /** Array of searchable items (all docs with content) */
   items: SearchItem[];
 }
 

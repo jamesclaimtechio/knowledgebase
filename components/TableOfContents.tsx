@@ -1,14 +1,40 @@
+/**
+ * 📑 TableOfContents Component
+ * 
+ * Displays a sidebar navigation for the current page's headings.
+ * Automatically highlights the heading currently in view.
+ * 
+ * Features:
+ * - Shows H2 and H3 headings extracted from the document
+ * - Uses IntersectionObserver for scroll-spy behavior
+ * - Nested display for H3 (indented under H2)
+ * - Smooth scroll on click
+ * 
+ * Headings are extracted by lib/docs.ts extractHeadings() function.
+ * 
+ * @example
+ * // In a page component
+ * const doc = getDocWithHeadings(slug);
+ * <TableOfContents headings={doc.headings} />
+ */
+
 'use client';
 
 import { useEffect, useState } from 'react';
 
+/** Heading structure from markdown document */
 interface Heading {
+  /** HTML id attribute for linking */
   id: string;
+  /** Display text of the heading */
   text: string;
+  /** Heading level (2 for H2, 3 for H3) */
   level: number;
 }
 
+/** Props for the TableOfContents component */
 interface TableOfContentsProps {
+  /** Array of headings extracted from the document */
   headings: Heading[];
 }
 

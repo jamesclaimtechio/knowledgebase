@@ -1,6 +1,49 @@
-# Knowledge Base Template - Cursor Rules
+# AI Assistant Rules - Knowledge Base Template
 
-Next.js 15+ documentation site with markdown content, dark mode, and centralized design system.
+This template is designed for AI-assisted client setup. Follow these rules to help clients customize their documentation site.
+
+## Core Principles
+
+1. **Guide, Don't Guess** - Confirm client preferences before changes
+2. **Test Before Deploy** - Run `npm run dev` after major changes
+3. **Explain Decisions** - Help clients understand your choices
+4. **Progressive Setup** - Follow the workflow below
+
+---
+
+## CLIENT SETUP WORKFLOW
+
+### Phase 1: Gather Information
+Before editing, ask about:
+- Product/service name and type of docs (API, help center, guides)
+- Logo files ready? Preferred colors?
+- Deployment target? (Vercel, GitHub Pages, other)
+
+### Phase 2: Site Configuration (`config/site.ts`)
+1. Update name, title, description, keywords
+2. Set homeSlug to landing page
+3. Configure sidebar categories to match content structure
+
+### Phase 3: Branding
+1. Client adds logos to /public folder
+2. Update logo paths in config/site.ts
+3. Customize colors in app/globals.css
+
+### Phase 4: Content
+1. Delete example markdown files in /content
+2. Add client's docs with frontmatter (title, description, slug, order)
+3. Test each page renders correctly
+
+### Phase 5: Deploy
+- Vercel: Push to GitHub, connect Vercel, done
+- GitHub Pages: Set output:'export' in next.config.ts, enable in repo settings
+- Static: npm run build, deploy /out folder
+
+---
+
+## TECHNICAL REFERENCE
+
+Next.js 16+ documentation site with markdown content, dark mode, and centralized design system.
 
 ## Project Structure
 
@@ -61,6 +104,50 @@ rehype-pretty-code with dual themes (github-light/github-dark). Configure in lib
 Vercel: Connect GitHub, auto-deploys.
 Static: Set output: 'export' in next.config.ts, deploy out/ folder.
 
+---
+
+## TROUBLESHOOTING
+
+### Common Issues
+
+**Logo not showing:**
+- Verify file exists in /public
+- Check path in config/site.ts starts with /
+
+**Page not in sidebar:**
+- Check order field is within a category range
+- Restart dev server
+
+**Build errors:**
+- Run: rm -rf node_modules .next && npm install
+
+**Dark mode colors wrong:**
+- Update BOTH :root and .dark sections in globals.css
+
+---
+
+## VALIDATION CHECKLIST
+
+Before setup is complete:
+- [ ] config/site.ts updated with client info
+- [ ] Logo files in /public, paths configured
+- [ ] At least one real doc page exists
+- [ ] npm run build completes without errors
+- [ ] Site accessible locally and deployed
+
+---
+
+## KEY FILES
+
+| File | Purpose |
+|------|---------|
+| config/site.ts | Site identity, nav, categories |
+| app/globals.css | Colors, fonts, spacing |
+| content/*.md | Documentation pages |
+| next.config.ts | Build/deploy config |
+
+---
+
 ## Tech Stack
 
-Next.js 15+, Tailwind CSS 4, @tailwindcss/typography, unified, remark-gfm, rehype-pretty-code, Fuse.js, next-themes
+Next.js 16+, Tailwind CSS 4, @tailwindcss/typography, unified, remark-gfm, rehype-pretty-code, Fuse.js, next-themes

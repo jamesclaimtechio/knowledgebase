@@ -1,5 +1,27 @@
+/**
+ * 📄 DocContent Component
+ * 
+ * Renders the main documentation content area including:
+ * - Page title and description header
+ * - Rendered markdown/HTML content
+ * - Previous/Next navigation links
+ * 
+ * This is a Server Component - it receives pre-rendered HTML from the markdown processor.
+ * Styling is applied via the .doc-content class defined in globals.css.
+ * 
+ * @example
+ * <DocContent
+ *   title="Getting Started"
+ *   description="Learn how to set up the project"
+ *   htmlContent="<h2>Introduction</h2><p>...</p>"
+ *   prev={{ title: "Overview", slug: "overview", ... }}
+ *   next={{ title: "Configuration", slug: "config", ... }}
+ * />
+ */
+
 import Link from 'next/link';
 
+/** Document metadata for navigation links */
 interface DocMeta {
   title: string;
   description: string;
@@ -7,11 +29,17 @@ interface DocMeta {
   order: number;
 }
 
+/** Props for the DocContent component */
 interface DocContentProps {
+  /** Page title displayed in the header */
   title: string;
+  /** Page description shown below the title */
   description: string;
+  /** Pre-rendered HTML content from markdown */
   htmlContent: string;
+  /** Previous document for navigation (null if first doc) */
   prev: DocMeta | null;
+  /** Next document for navigation (null if last doc) */
   next: DocMeta | null;
 }
 
